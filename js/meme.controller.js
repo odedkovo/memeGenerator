@@ -7,7 +7,7 @@ function renderMeme() {
   // console.log(gCurrMeme);
   gCanvas = document.querySelector('#my-canvas');
   gCtx = gCanvas.getContext('2d');
-  drawImgFromlocal(`/img/${gCurrMeme.selectedImgId}.jpg`);
+  drawImgFromlocal(`./img/${gCurrMeme.selectedImgId}.jpg`);
   setTimeout(function () {
     renderText();
   }, 1);
