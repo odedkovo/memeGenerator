@@ -5,3 +5,28 @@
 body {
   background-color: aquamarine;
 }
+
+/* HTML */
+
+/* HELPERS */
+
+/* Gallery */
+.gallery img {
+  width: 200px;
+  height: 200px;
+}
+.gallery img:hover {
+  cursor: pointer;
+}
+
+/* EDITOR */
+.canvas-container {
+  background-color: aquamarine;
+}
+
+canvas {
+  display: block;
+  margin: 0 auto;
+  /* outline: 1px solid black; */
+  background-color: rgb(255, 255, 255);
+}
