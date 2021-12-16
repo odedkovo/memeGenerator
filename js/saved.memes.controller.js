@@ -1,5 +1,7 @@
 'use strict';
 function renderSavedMemes() {
+  document.querySelector('.saved-memes').style.display = 'grid';
+
   document.querySelector('.gallery').style.display = 'none';
   document.querySelector('.editor').style.display = 'none';
   document.querySelector('.me').style.display = 'none';
