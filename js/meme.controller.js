@@ -3,6 +3,8 @@ var gCanvas;
 var gCtx;
 var gCurrMeme;
 var handle;
+var gIsSaved;
+var gIsDownload;
 getMeme();
 
 function renderMeme() {
@@ -38,10 +40,12 @@ function renderText() {
       line.font
     );
   });
-  renderRect();
+  renderRect(gCurrMeme.selectedLineIdx);
 }
 
-function renderRect() {
+function renderRect(num) {
+  console.log(gIsSaved);
+  if (gIsSaved === true) return;
   var selectedTxtIdx = gCurrMeme.selectedLineIdx;
   // console.log(selectedTxtIdx);
   var selectedLine = gCurrMeme.lines[selectedTxtIdx];
@@ -126,16 +130,37 @@ function onSelectFont(selectedFont) {
   renderMeme();
 }
 function onDownload(elLink) {
-  console.log(elLink);
+  gIsSaved = true;
+  renderMeme();
+
+  setTimeout(function () {
+    download(elLink);
+  }, 20);
+}
+
+function download(elLink) {
   var imgContent = gCanvas.toDataURL('img/jpeg');
   console.log(imgContent);
   elLink.href = imgContent;
+  gIsSaved = false;
 }
 
 function onSaveMeme() {
+  gIsSaved = true;
+  console.log(gIsSaved);
+  renderMeme();
+  console.log('hi');
+  setTimeout(function () {
+    saveMeme();
+  }, 1);
+
+  // gIsSaved === false;
+}
+
+function saveMeme() {
   var imgContent = gCanvas.toDataURL('img/jpeg');
   gCurrMeme.imgUrl = imgContent;
-  gCurrMeme.id += 1000;
+
   var savedMemes = loadFromStorage('savedMemesDB');
   console.log(savedMemes);
   if (!savedMemes || savedMemes.length === 0)
@@ -144,24 +169,10 @@ function onSaveMeme() {
     savedMemes.push(gCurrMeme);
     saveToStorage('savedMemesDB', savedMemes);
   }
+  gIsSaved = false;
 }
 
 function onMoveLine(direction) {
   moveLine(direction);
   renderMeme();
-}
-
-function handleMouseDown(e) {
-  gCurrMeme.lines[gCurrMeme.selectedLineIdx];
-
-  e.preventDefault();
-  startX = parseInt(e.clientX - offsetX);
-  startY = parseInt(e.clientY - offsetY);
-  // Put your mousedown stuff here
-
-  for (var i = 0; i < texts.length; i++) {
-    if (textHittest(startX, startY, i)) {
-      selectedText = i;
-    }
-  }
 }
