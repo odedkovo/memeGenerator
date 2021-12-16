@@ -5,16 +5,16 @@
 /* FONTS */
 @font-face {
   font-family: corintia-regular;
-  src: url(/fonts/Corinthia/Corinthia-Regular.ttf);
+  src: url(./fonts/Corinthia/Corinthia-Regular.ttf);
 }
 
 @font-face {
   font-family: Shalimar-Regular;
-  src: url(/fonts/Shalimar/Shalimar-Regular.ttf);
+  src: url(./fonts/Shalimar/Shalimar-Regular.ttf);
 }
 @font-face {
   font-family: baloo-bold;
-  src: url(/fonts/Baloo_Bhaijaan_2/static/BalooBhaijaan2-Bold.ttf);
+  src: url(./fonts/Baloo_Bhaijaan_2/static/BalooBhaijaan2-Bold.ttf);
 }
 
 body {
