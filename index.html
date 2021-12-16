@@ -70,21 +70,21 @@
 
           <ul class="flex">
             <div class="flex">
-              <li onclick="renderGallery('funny')">funny</li>
-              <li onclick="renderGallery('comics')">comics</li>
-              <li onclick="renderGallery('dogs')">dogs</li>
-              <li onclick="renderGallery('drinks')">drinks</li>
-              <li onclick="renderGallery('books')">books</li>
+              <li class="funny-li" onclick="renderGallery('funny')">funny</li>
+              <li class="comics-li" onclick="renderGallery('comics')">comics</li>
+              <li class="dogs-li" onclick="renderGallery('dogs')">dogs</li>
+              <li class="drinks-li" onclick="renderGallery('drinks')">drinks</li>
+              <li class="books-li" onclick="renderGallery('books')">books</li>
               <li onclick="loadMoreKeyWords()"><span>more..</span></li>
             </div>
           </ul>
 
           <ul class="flex">
                 <div class="more-key-words flex">
-                <li onclick="renderGallery('love')">love</li>
-                <li onclick="renderGallery('baby')">baby</li>
-                <li onclick="renderGallery('sleep')">sleep</li>
-                <li onclick="renderGallery('shock')">shock</li>
+                <li class="live-li" onclick="renderGallery('love')">love</li>
+                <li class="baby-li" onclick="renderGallery('baby')">baby</li>
+                <li class="sleep-li" onclick="renderGallery('sleep')">sleep</li>
+                <li class="shock-li" onclick="renderGallery('shock')">shock</li>
               </div>
               </ul>
             
@@ -110,10 +110,10 @@
     
     <button class="switch-line" onclick="onSwitchLine()"><img src="./icons/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></button>
     
-    <button class="add-line" onclick="onCreateLine()"><img src="/icons/add.png" alt=""></button>
+    <button class="add-line" onclick="onCreateLine()"><img src="./icons/add.png" alt=""></button>
     <button class="trash" onclick ="onTrash()"><img src="./icons/trash.png" alt=""></button>
     <button class="increase-font" onclick="changeFontSize('+')"><img src="./icons/increase font - icon.png" alt=""></button>
-    <button class="decrease-font"onclick="changeFontSize('-')"><img src="/icons/decrease font - icon.png" alt=""></button>
+    <button class="decrease-font"onclick="changeFontSize('-')"><img src="./icons/decrease font - icon.png" alt=""></button>
     <button class="align-left" onclick="onAlign('right')"><img src="./icons/align-to-left.png" alt=""></button>
   <button class="align-center" onclick="onAlign('center')"><img src="./icons/center-text-alignment.png" alt=""></button>
   <button class="align-right" onclick="onAlign('left')"><img src="./icons/align-to-right.png" alt=""></button>

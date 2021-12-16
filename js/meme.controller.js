@@ -2,6 +2,7 @@
 var gCanvas;
 var gCtx;
 var gCurrMeme;
+var handle;
 getMeme();
 
 function renderMeme() {
@@ -148,4 +149,19 @@ function onSaveMeme() {
 function onMoveLine(direction) {
   moveLine(direction);
   renderMeme();
+}
+
+function handleMouseDown(e) {
+  gCurrMeme.lines[gCurrMeme.selectedLineIdx];
+
+  e.preventDefault();
+  startX = parseInt(e.clientX - offsetX);
+  startY = parseInt(e.clientY - offsetY);
+  // Put your mousedown stuff here
+
+  for (var i = 0; i < texts.length; i++) {
+    if (textHittest(startX, startY, i)) {
+      selectedText = i;
+    }
+  }
 }

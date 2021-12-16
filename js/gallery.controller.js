@@ -2,6 +2,7 @@
 var gclickedMore = 0;
 
 function renderGallery(keyWord) {
+  document.querySelector('.saved-memes').style.display = 'none';
   var elgallery = document.querySelector('.gallery-container .gallery');
   document.querySelector('.editor').style.display = 'none';
   document.querySelector('.hero').style.display = 'flex';
