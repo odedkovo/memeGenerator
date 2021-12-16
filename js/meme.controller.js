@@ -1,15 +1,16 @@
 'use strict';
 var gCanvas;
 var gCtx;
-var gCurrMeme = getMeme();
+var gCurrMeme;
+getMeme();
 
 function renderMeme() {
   // console.log(gCurrMeme);
   gCanvas = document.querySelector('#my-canvas');
   gCtx = gCanvas.getContext('2d');
 
+  gCurrMeme = getMeme();
   drawImgFromlocal(`./img/${gCurrMeme.selectedImgId}.jpg`);
-
   setTimeout(function () {
     renderText();
   }, 1);
@@ -26,7 +27,15 @@ function drawImgFromlocal(imgSrc) {
 
 function renderText() {
   gCurrMeme.lines.forEach(function (line) {
-    drawText(line.txt, line.align, line.color, line.size, line.y);
+    drawText(
+      line.txt,
+      line.align,
+      line.color,
+      line.strokeColor,
+      line.size,
+      line.y,
+      line.font
+    );
   });
   renderRect();
 }
@@ -39,11 +48,12 @@ function renderRect() {
   drawRect(0, selectedLine.y - selectedLine.size / 2, 450, selectedLine.size);
 }
 
-function drawText(txt, align, color, size, y) {
+function drawText(txt, align, color, strokeColor, size, y, font) {
   gCtx.textBaseline = 'middle';
   gCtx.textAlign = align;
-  gCtx.font = `${size}px monospace`;
-  gCtx.fillStyle = `${color}`;
+  gCtx.font = `${size}px ${font}`;
+  gCtx.fillStyle = color;
+  gCtx.strokeStyle = strokeColor;
   gCtx.fillText(txt, 225, y);
   gCtx.strokeText(txt, 225, y);
 }
@@ -56,6 +66,7 @@ function getInput() {
 
 function getColor() {
   var chosenColor = document.querySelector('#chosen-color').value;
+  console.log(chosenColor);
   changeColor(chosenColor);
   renderMeme();
 }
@@ -86,10 +97,50 @@ function drawRect(xStart, yStart, width, height) {
 
 function updateInputElemnt() {
   var txtInput = document.querySelector('#meme-text');
+  // console.log(gCurrMeme);
   var selectedLineTxt = gCurrMeme.lines[gCurrMeme.selectedLineIdx].txt;
+
   txtInput.value = selectedLineTxt;
 }
 
-function clearCanvas() {
-  gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+function onAlign(side) {
+  changeAlign(side);
+  renderMeme();
+}
+
+function onStrokeColor() {
+  var strokeColor = document.querySelector('#stroke-color').value;
+  console.log(strokeColor);
+  changeStrokeColor(strokeColor);
+  renderMeme();
+}
+function onTrash() {
+  deleteSelectedLine();
+  renderMeme();
+}
+
+function onSelectFont(selectedFont) {
+  console.log(selectedFont);
+  changeTxtFont(selectedFont);
+  renderMeme();
+}
+function onDownload(elLink) {
+  console.log(elLink);
+  var imgContent = gCanvas.toDataURL('img/jpeg');
+  console.log(imgContent);
+  elLink.href = imgContent;
+}
+
+function onSaveMeme() {
+  var imgContent = gCanvas.toDataURL('img/jpeg');
+  gCurrMeme.imgUrl = imgContent;
+  gCurrMeme.id += 1000;
+  var savedMemes = loadFromStorage('savedMemesDB');
+  console.log(savedMemes);
+  if (!savedMemes || savedMemes.length === 0)
+    saveToStorage('savedMemesDB', [gCurrMeme]);
+  else {
+    savedMemes.push(gCurrMeme);
+    saveToStorage('savedMemesDB', savedMemes);
+  }
 }

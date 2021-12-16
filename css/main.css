@@ -2,12 +2,27 @@
   box-sizing: border-box;
 }
 
-body {
-  background-color: aquamarine;
-  margin: 0 auto;
+/* FONTS */
+@font-face {
+  font-family: corintia-regular;
+  src: url(/fonts/Corinthia/Corinthia-Regular.ttf);
 }
 
-/* HTML */
+@font-face {
+  font-family: Shalimar-Regular;
+  src: url(/fonts/Shalimar/Shalimar-Regular.ttf);
+}
+@font-face {
+  font-family: baloo-bold;
+  src: url(/fonts/Baloo_Bhaijaan_2/static/BalooBhaijaan2-Bold.ttf);
+}
+
+body {
+  font-size: 1rem;
+  font-family: baloo-bold;
+  background-color: rgb(253, 251, 251);
+  margin: 0 auto;
+}
 
 /* HELPERS */
 .flex {
@@ -22,11 +37,28 @@ ul {
   list-style: none;
   margin: 0;
 }
+input {
+  text-align: center;
+  border: none;
+}
+select {
+  text-align: center;
+}
+
+.active {
+  border-bottom: black solid 3px;
+  color: black;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
 
 /* HEADEER */
 header {
   height: 15vh;
-  background-color: rgb(88, 10, 10);
+  background-color: rgb(255, 149, 11);
 }
 .main-header {
   justify-content: space-between;
@@ -65,10 +97,15 @@ header {
 
   height: 100%;
   width: 33.3%;
-  border-right: rgb(11, 12, 11) solid 2px;
+  /* border-right: rgb(11, 12, 11) solid 2px; */
 }
 .ul-nav-bar li:first-child {
-  border-left: rgb(11, 12, 11) solid 2px;
+}
+
+.ul-nav-bar span {
+  text-align: center;
+  width: 100%;
+  border-right: rgb(11, 12, 11) solid 2px;
 }
 
 .ul-nav-bar li:hover {
@@ -81,7 +118,7 @@ header {
 .modal {
   height: 50%;
   width: 30%;
-  background-color: brown;
+  background-color: rgb(129, 18, 18);
   position: fixed;
   top: -100%;
   left: 70%;
@@ -127,8 +164,8 @@ header {
 
 /* hero */
 .hero {
-  height: 20vh;
-  background-color: whitesmoke;
+  height: 12vh;
+  background-color: rgb(255, 255, 255);
 }
 
 .main-hero {
@@ -138,9 +175,27 @@ header {
 .key-words {
   width: 50%;
 }
-
+.hero-input {
+  border-bottom: black solid 1px;
+}
+#search-text {
+  border: none;
+  text-align: left;
+  width: 250px;
+}
+.hero img {
+  height: 15px;
+}
 .key-words ul {
   justify-content: space-between;
+}
+.hero ul div {
+  width: 100%;
+  justify-content: space-around;
+}
+
+.more-key-words {
+  display: none;
 }
 
 .key-words li:hover {
@@ -150,22 +205,28 @@ header {
 }
 
 /* Gallery */
-
+.gallery-container {
+  background-color: rgb(221, 220, 220);
+}
 .gallery {
-  margin-top: 5px;
+  padding: 10px;
+  margin-top: 10px;
   display: grid;
   justify-content: center;
-  gap: 1px;
+  gap: 6px;
   grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
   grid-template-columns: repeat(auto-fill, 220px);
   /* grid-template-rows: repeat(3, 1fr);
   grid-template-columns: repeat(6, 1fr); */
 }
+
 .img {
+  border-radius: 15px;
   width: 220px;
   height: 220px;
 }
 .img img {
+  border-radius: 15px;
   max-width: 220px;
 }
 .gallery img:hover {
@@ -173,14 +234,155 @@ header {
 }
 
 /* EDITOR */
-
-.editor {
-  margin-top: 5px;
-  display: none;
+#my-canvas {
+  margin-bottom: 5px;
+  border-radius: 15px;
 }
 
-.canvas-container {
-  background-color: aquamarine;
+.editor {
+  padding: 10px;
+  background-color: #e2e2e2;
+
+  display: none;
+  justify-content: space-around;
+  align-items: center;
+}
+.al-meme-buttons {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+}
+
+.meme-buttons {
+  display: grid;
+  grid-template-rows: 7;
+  grid-template-columns: 5;
+  gap: 5px;
+  width: 100%;
+  height: 80%;
+  justify-content: center;
+}
+
+.meme-buttons button {
+  height: 50px;
+  width: 50px;
+  border-radius: 10%;
+  background-color: whitesmoke;
+  position: relative;
+}
+
+.meme-buttons button img {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  transform: translate(-50%, -50%);
+}
+
+button input {
+  opacity: 0;
+  z-index: 1;
+  height: 50px;
+  width: 50px;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+/* grid ;row start/col start/row end /col end */
+#meme-text {
+  height: 50px;
+  border-radius: 15px;
+  grid-area: 1/1/2/6;
+}
+.switch-line {
+  grid-row: 2;
+  grid-column: 2;
+  margin-bottom: 15px;
+}
+.add-line {
+  grid-row: 2;
+  grid-column: 3;
+}
+.trash {
+  grid-row: 2;
+  grid-column: 4;
+}
+.increase-font {
+  grid-row: 3;
+  grid-column: 1;
+}
+
+.decrease-font {
+  grid-row: 3;
+  grid-column: 2;
+}
+.align-left {
+  grid-row: 3;
+  grid-column: 3;
+}
+
+.align-center {
+  grid-row: 3;
+  grid-column: 4;
+}
+
+.align-right {
+  grid-row: 3;
+  grid-column: 5;
+}
+#fonts {
+  grid-area: 4/1/5/4;
+  height: 50px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}
+.text-stroke {
+  grid-row: 4;
+  grid-column: 4;
+}
+.painter {
+  grid-row: 4;
+  grid-column: 5;
+}
+
+#meme-text {
+  grid-area: 1/1/1/6;
+}
+.font {
+  grid-area: 1/1/1/6;
+}
+.stickers-box {
+  height: 70px;
+  width: 100%;
+  background-color: #ffffff;
+  grid-area: 5/1/6/6;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}
+.media-buttons {
+  width: 100%;
+  justify-content: space-around;
+  margin-bottom: 5px;
+}
+.media-buttons button {
+  position: relative;
+  margin-bottom: 15px;
+  height: 40px;
+  width: 30%;
+  border-radius: 15px;
+  background-color: rgb(255, 149, 11);
+  color: #ffffff;
+}
+
+.media-buttons button:hover {
+  border: rgb(11, 12, 11) solid 1px;
+  background-color: rgb(238, 159, 56);
+}
+.download-link {
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  transform: translate(-50%, -25%);
 }
 
 canvas {
@@ -195,7 +397,7 @@ canvas {
 .me {
   height: 40vh;
   width: 100%;
-  background-color: rgb(231, 204, 204);
+  background-color: rgb(240, 240, 240);
 }
 
 .main-me {
@@ -228,9 +430,9 @@ canvas {
 }
 
 .about-me button {
-  background-color: rgb(143, 143, 180);
+  background-color: rgb(255, 149, 11);
   /* background-image: linear-gradient(-180deg, #ff7e31, #e62c03); */
-  border-radius: 6px;
+  border-radius: 15px;
   box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
   color: #ffffff;
   cursor: pointer;
@@ -270,7 +472,7 @@ li .instegram:hover {
   text-align: center;
   width: 100%;
   height: 30vh;
-  background-color: rgb(88, 10, 10);
+  background-color: rgb(255, 149, 11);
   justify-content: center;
   align-items: center;
   color: aliceblue;
@@ -325,7 +527,7 @@ li .instegram:hover {
   /* me */
   .me {
     text-align: center;
-    height: 50vh;
+    height: 470px;
     width: 100%;
     justify-content: center;
   }
@@ -343,5 +545,23 @@ li .instegram:hover {
   .me ul {
     padding: 0%;
     margin: auto;
+  }
+
+  /* editor */
+  .editor {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .al-meme-buttons {
+    margin-top: 10px;
+    width: 80%;
+  }
+  #my-canvas {
+    height: 300px;
+    width: 300px;
+  }
+  .media-buttons {
+    width: 100%;
   }
 }

@@ -1,27 +1,60 @@
 'use strict';
 
 function onInitGallery() {
-  renderGallery();
+  renderGallery('all');
 }
 
-function renderGallery() {
+function renderGallery(keyWord) {
   var elgallery = document.querySelector('.gallery');
   document.querySelector('.editor').style.display = 'none';
   document.querySelector('.hero').style.display = 'flex';
+  document.querySelector('.me').style.display = 'flex';
+  document.querySelector('.gallery-li').classList.add('active');
   elgallery.style.display = 'grid';
 
+  console.log(keyWord);
+  var sortedArray = onSortBy(keyWord);
+  console.log(sortedArray);
   var strHtml = '';
-  for (var i = 1; i < 19; i++) {
-    strHtml += ` <div class="img img${i}"><img onclick="onImgSelect(${i})" src="./img/${i}.jpg" alt=""/></div>`;
-  }
-  console.log(strHtml);
+
+  sortedArray.forEach((memeImg) => {
+    strHtml += ` <div class="img img${memeImg.id}"><img onclick="onImgSelect(${memeImg.id})" src="./img/${memeImg.id}.jpg" alt=""/></div>`;
+  });
+
+  // console.log(strHtml);
+
+  // console.log(strHtml);
   elgallery.innerHTML = strHtml;
 }
 
 function onImgSelect(imgId) {
+  getCurrMemeId(imgId);
+  document.querySelector('.gallery-li').classList.remove('active');
   document.querySelector('.gallery').style.display = 'none';
-  document.querySelector('.editor').style.display = 'block';
+  document.querySelector('.editor').style.display = 'flex';
   document.querySelector('.hero').style.display = 'none';
+  document.querySelector('.me').style.display = 'none';
   setImg(imgId);
   renderMeme();
+}
+
+function onSortBy(value) {
+  // console.log(value);
+  var arraySorted = sortBy(value);
+  return arraySorted;
+}
+var gclickedMore = 0;
+function loadMoreKeyWords() {
+  var elMoreKeyWords = document.querySelector('.more-key-words');
+  var elMoreTxt = document.querySelector('.key-words span');
+
+  if (gclickedMore % 2 === 0) {
+    elMoreKeyWords.style.display = 'flex';
+    elMoreTxt.innerText = 'less..';
+  } else {
+    elMoreKeyWords.style.display = 'none';
+    elMoreTxt.innerText = 'more..';
+  }
+
+  gclickedMore++;
 }

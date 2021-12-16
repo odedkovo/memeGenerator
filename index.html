@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./css/main.css" />
   </head>
 
-  <body onload="renderGallery()">
+  <body onload="renderGallery('all')">
 
     <div class="main-screen" onclick="toggleMenu()"></div>
 
@@ -19,9 +19,9 @@
         </div>
         <div class="nav-bar flex">
           <ul class="ul-nav-bar flex">
-            <li onclick=" renderGallery()">gallery</li>
-            <li onclick="renderSavedMemes()">saved</li>
-            <li onclick="showAboutModal()">about</li>
+            <li class="gallery-li" onclick=" renderGallery('all')"><span>gallery</span></li>
+            <li onclick="renderSavedMemes()"><span>saved</span></li>
+            <li onclick="showAboutModal()"><a href="#me">about</a></li>
           </ul>
         </div>
         
@@ -37,7 +37,7 @@
 
     <div class="modal flex">
       <ul>
-        <li onclick=" renderGallery()">gallery</li>
+        <li onclick=" renderGallery('all')">gallery</li>
             <li onclick="renderSavedMemes()">saved</li>
             <li onclick="showAboutModal()">about</li>
       </ul>
@@ -47,40 +47,103 @@
       <div class="main-hero main-layout flex">
         <div class="hero-input">
           <input
-            id="search-text"
-            type="text"
-            placeholder="enter search keyboard"
-          />
+          onchange="renderGallery(this.value)"
+          placeholder="Search Categories"
+          list="search-options"
+          id="search-choice"
+        />
+        <datalist id="search-options">
+          <option value="funny"></option>
+          <option value="comics"></option>
+          <option value="dogs"></option>
+          <option value="drinks"></option>
+          <option value="books"></option>
+          <option value="love"></option>
+          <option value="baby"></option>
+          <option value="sleep"></option>
+          <option value="shock"></option>
+        </datalist>
+
+          <img src="./icons/search-icon.png" alt="">
         </div>
         <div class="key-words">
+
           <ul class="flex">
-            <li onclick="sortBy('funny')">funny</li>
-            <li onclick="sortBy('comics')">comics</li>
-            <li onclick="sortBy('dogs')">dogs</li>
-            <li onclick="sortBy('drinks')">drinks</li>
-            <li onclick="sortBy('books')">books</li>
-            <li onclick="loadMoreKeyWords()">more</li>
+            <div class="flex">
+              <li onclick="renderGallery('funny')">funny</li>
+              <li onclick="renderGallery('comics')">comics</li>
+              <li onclick="renderGallery('dogs')">dogs</li>
+              <li onclick="renderGallery('drinks')">drinks</li>
+              <li onclick="renderGallery('books')">books</li>
+              <li onclick="loadMoreKeyWords()"><span>more..</span></li>
+            </div>
           </ul>
+
+          <ul class="flex">
+                <div class="more-key-words flex">
+                <li onclick="renderGallery('love')">love</li>
+                <li onclick="renderGallery('baby')">baby</li>
+                <li onclick="renderGallery('sleep')">sleep</li>
+                <li onclick="renderGallery('shock')">shock</li>
+              </div>
+              </ul>
+            
         </div>
       </div>
     </section>
+<div class="gallery-container">
+  <div class="gallery main-layout"></div>
+  
+</div>
+    <section class="editor flex">
 
-    <div class="gallery main-layout"></div>
-
-    <section class="editor">
       <div class="canvas-container">
         <canvas id="my-canvas" height="450" width="450"></canvas>
       </div>
+<div class="al-meme-buttons">
 
-      <input oninput="getInput()" type="text" id="meme-text" />
-      <input id="chosen-color" type="color" oninput="getColor()" />
-      <button onclick="changeFontSize('+')">+</button>
-      <button onclick="changeFontSize('-')">-</button>
-      <button onclick="onCreateLine()">create line</button>
-      <button onclick="onSwitchLine()">switch line</button>
+  <div class="meme-buttons">
+    <input oninput="getInput()" type="text" id="meme-text" /> 
+    <button class="switch-line" onclick="onSwitchLine()"><img src="./icons/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></button>
+    <button class="add-line" onclick="onCreateLine()"><img src="/icons/add.png" alt=""></button>
+    <button class="trash" onclick ="onTrash()"><img src="./icons/trash.png" alt=""></button>
+    <button class="increase-font" onclick="changeFontSize('+')"><img src="./icons/increase font - icon.png" alt=""></button>
+    <button class="decrease-font"onclick="changeFontSize('-')"><img src="/icons/decrease font - icon.png" alt=""></button>
+    <button class="align-left" onclick="onAlign('right')"><img src="./icons/align-to-left.png" alt=""></button>
+  <button class="align-center" onclick="onAlign('center')"><img src="./icons/center-text-alignment.png" alt=""></button>
+  <button class="align-right" onclick="onAlign('left')"><img src="./icons/align-to-right.png" alt=""></button>
+ 
+  <select onchange="onSelectFont(this.value)" name="fonts" id="fonts">
+    <option value=" impact">impact</option>
+    <option value=" baloo-bold">balooo</option>
+    <option value="Shalimar-Regular">Shalimar</option>
+   <option value="corintia-regular">corintia</option>
+  </select>
+
+  <button class="text-stroke" ><img src="./icons/text stroke.png" alt="">
+    <input id="stroke-color" type="color" oninput="onStrokeColor()" /></button>
+ <button class="painter">
+   <img src="./icons/paint-board-and-brush.png" alt="">
+   <input id="chosen-color" type="color" oninput="getColor()" />
+  </button>
+  <div class="stickers-box">stickers</div>
+</div>
+
+<div class="media-buttons flex">
+  <button onclick="onSaveMeme()" class="save-button">save</button>
+  <button class="share-button">share</button>
+  <button class="download-button"> <a href="#" class="download-link" onclick="onDownload(this)" download="my-img.jpg">Download</a></button>
+</div>
+
+</div>
     </section>
 
-    <section class="me flex">
+    <section class="saved-memes gallery"></section>
+
+
+
+
+    <section id="me" class="me flex">
       <div class="main-me main-layout flex">
         
         <div class="contact-me">
@@ -115,16 +178,18 @@
 
     <footer class="footer flex">
       <div class="main-footer">
-        <h3>meme generator</h3>
+        <h3>memegen</h3>
         <div class="coffeeright">"Ⓒ coffee rights to oded kovo"</div>
       </div>
     </footer>
 
 
+    <script src="./js/storage.uils.js"></script>
     <script src="./js/main.js"></script>
     <script src="./js/meme.service.js"></script>
     <script src="./js/meme.controller.js"></script>
     <script src="./js/gallery.controller.js"></script>
+    <script src="./js/saved.memes.controller.js"></script>
 
 
 <script>
