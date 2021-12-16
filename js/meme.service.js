@@ -103,6 +103,11 @@ function changeTxtFont(selectedFont) {
   gMeme.lines[gMeme.selectedLineIdx].font = selectedFont;
 }
 
+function moveLine(direction) {
+  if (direction === 'up') gMeme.lines[gMeme.selectedLineIdx].y -= 20;
+  else if (direction === 'down') gMeme.lines[gMeme.selectedLineIdx].y += 20;
+}
+
 function setkeyWords() {
   var all = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
   all.forEach((num) => gMemes[num].keyWords.push('all'));

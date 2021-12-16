@@ -144,3 +144,8 @@ function onSaveMeme() {
     saveToStorage('savedMemesDB', savedMemes);
   }
 }
+
+function onMoveLine(direction) {
+  moveLine(direction);
+  renderMeme();
+}
