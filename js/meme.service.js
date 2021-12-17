@@ -139,3 +139,6 @@ function sortBy(keyWord) {
   var filteredMemes = gMemes.filter((meme) => meme.keyWords.includes(keyWord));
   return filteredMemes;
 }
+function changeSelectedLine(idx) {
+  gMeme.selectedLineIdx = idx;
+}

@@ -8,9 +8,9 @@ var gIsDownload;
 getMeme();
 
 function renderMeme() {
-  // console.log(gCurrMeme);
   gCanvas = document.querySelector('#my-canvas');
   gCtx = gCanvas.getContext('2d');
+  gCanvas.addEventListener('mousedown', (event) => eventHanler(event));
 
   gCurrMeme = getMeme();
   drawImgFromlocal(`./img/${gCurrMeme.selectedImgId}.jpg`);
@@ -159,13 +159,13 @@ function onSaveMeme() {
   // gIsSaved === false;
 }
 /////
-var gSavedImgId = 1;
+
 //////
 function saveMeme() {
   var imgContent = gCanvas.toDataURL('img/jpeg');
   gCurrMeme.imgUrl = imgContent;
   /////
-  gCurrMeme.savedImgId = gSavedImgId;
+
   ///////
   var savedMemes = loadFromStorage('savedMemesDB');
   console.log(savedMemes);
@@ -177,7 +177,7 @@ function saveMeme() {
   }
   gIsSaved = false;
   //////
-  gSavedImgId++;
+
   //////
 }
 
@@ -221,4 +221,20 @@ function doUploadImg(imgDataUrl, onSuccess) {
 
 function closeShareModal() {
   document.querySelector('.share-container').style.left = '125%';
+}
+
+function eventHanler(ev) {
+  var x = ev.offsetX;
+  var y = ev.offsetY;
+  // console.log(x);
+  // console.log(y);
+  // console.log(gCurrMeme);
+  var currLineIdxClicked = gCurrMeme.lines.findIndex(
+    (line) => line.y < y + line.size && line.y > y - line.size
+  );
+  if (currLineIdxClicked === -1) return;
+
+  console.log(currLineIdxClicked);
+  changeSelectedLine(currLineIdxClicked);
+  renderMeme();
 }
