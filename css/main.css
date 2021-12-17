@@ -5,16 +5,20 @@
 /* FONTS */
 @font-face {
   font-family: corintia-regular;
-  src: url(/fonts/Corinthia/Corinthia-Regular.ttf);
+  src: url(../fonts/Corinthia/Corinthia-Regular.ttf);
 }
 
 @font-face {
   font-family: Shalimar-Regular;
-  src: url(/fonts/Shalimar/Shalimar-Regular.ttf);
+  src: url(../fonts/Shalimar/Shalimar-Regular.ttf);
 }
 @font-face {
   font-family: baloo-bold;
-  src: url(/fonts/Baloo_Bhaijaan_2/static/BalooBhaijaan2-Bold.ttf);
+  src: url(../fonts/Baloo_Bhaijaan_2/static/BalooBhaijaan2-Bold.ttf);
+}
+@font-face {
+  font-family: fa;
+  src: url(../fonts/fa-brands-400.ttf);
 }
 
 body {
@@ -22,6 +26,7 @@ body {
   font-family: baloo-bold;
   background-color: rgb(253, 251, 251);
   margin: 0 auto;
+  overflow-x: hidden;
 }
 
 /* HELPERS */
@@ -378,6 +383,18 @@ button input {
   border: rgb(11, 12, 11) solid 1px;
   background-color: rgb(238, 159, 56);
 }
+
+.download-modal {
+  text-align: center;
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  background-color: rgba(137, 43, 226, 0.849);
+  border-radius: 15px;
+  top: 80%;
+  left: 120%;
+  transition: 0.3s;
+}
 .download-link {
   top: 50%;
   left: 50%;
@@ -385,6 +402,26 @@ button input {
   height: 100%;
   width: 100%;
   transform: translate(-50%, -25%);
+}
+
+.share-container {
+  border-radius: 10px;
+  text-align: center;
+  background-color: rgb(191, 150, 230);
+  width: 50px;
+  height: 60px;
+  position: absolute;
+  left: 120%;
+  top: 80%;
+  transition: 0.4s;
+}
+.share-container button {
+  border-radius: 10px;
+  border: none;
+}
+
+.share-container a {
+  color: black;
 }
 
 canvas {
@@ -427,52 +464,58 @@ canvas {
   flex-direction: column;
 }
 .about-me ul {
-  width: 50%;
-  justify-content: space-around;
+  width: 100%;
+  justify-content: flex-start;
+  list-style: none;
+  padding: 0%;
 }
 
-.about-me li button {
-  height: 25px;
-  width: 30 px;
+.about-me li a {
+  margin-right: 20px;
+  margin-left: 20px;
 }
 
 .about-me button {
-  background-color: rgb(255, 149, 11);
-  /* background-image: linear-gradient(-180deg, #ff7e31, #e62c03); */
-  border-radius: 15px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
-  color: #ffffff;
+  border: none;
+}
+.about-me button:hover {
   cursor: pointer;
-  height: 40px;
-  /* line-height: 40px; */
-  outline: 0;
-  overflow: hidden;
-  padding: 0 20px;
-  pointer-events: auto;
-  position: relative;
-  text-align: center;
-  touch-action: manipulation;
-  user-select: none;
-  -webkit-user-select: none;
-  vertical-align: top;
-  white-space: nowrap;
-  width: 100%;
-
-  border: 0;
-  transition: box-shadow 0.2s;
 }
 
-.button-42:hover {
-  box-shadow: rgba(253, 76, 0, 0.5) 0 3px 8px;
+.fa {
+  font-family: fa;
+  font-size: 1.2rem;
 }
-
+.facebook {
+  color: black;
+}
+.instegram {
+  color: black;
+}
+.github {
+  color: black;
+}
+.facebook::before {
+  content: '\f39e';
+}
 .facebook:hover {
-  background-color: rgb(81, 111, 173);
+  color: rgb(64, 64, 161);
 }
 
-li .instegram:hover {
-  background-color: rgb(138, 35, 66);
+.instegram::before {
+  content: '\f16d';
 }
+.instegram:hover {
+  color: rgb(230, 36, 75);
+}
+
+.github::before {
+  content: '\f09b';
+}
+.github:hover {
+  color: rgb(48, 46, 46);
+}
+
 /* footer */
 
 .footer {
@@ -484,6 +527,12 @@ li .instegram:hover {
   align-items: center;
   color: aliceblue;
   font-size: 1.5rem;
+}
+.footer h3 {
+  margin: 5px;
+}
+.coffeeright {
+  margin: 5px;
 }
 
 @media screen and (max-width: 706px) {
@@ -552,6 +601,7 @@ li .instegram:hover {
   .me ul {
     padding: 0%;
     margin: auto;
+    justify-content: center;
   }
 
   /* editor */

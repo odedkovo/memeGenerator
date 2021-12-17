@@ -8,6 +8,9 @@ function renderGallery(keyWord) {
   document.querySelector('.hero').style.display = 'flex';
   document.querySelector('.me').style.display = 'flex';
   document.querySelector('.gallery-li').classList.add('active');
+  document.querySelector('.saved-memes-li').classList.remove('active');
+  document.querySelector('.about-li').classList.remove('active');
+
   elgallery.style.display = 'grid';
   console.log(keyWord);
   var sortedArray = onSortBy(keyWord);
@@ -21,7 +24,7 @@ function renderGallery(keyWord) {
 
 function onImgSelect(imgId) {
   getCurrMemeId(imgId);
-  document.querySelector('.gallery-li').classList.remove('active');
+  document.querySelector('.gallery-li').classList.remove('.active');
   document.querySelector('.gallery').style.display = 'none';
   document.querySelector('.editor').style.display = 'flex';
   document.querySelector('.hero').style.display = 'none';
@@ -52,4 +55,7 @@ function loadMoreKeyWords() {
 
 function showAbout() {
   document.querySelector('.me').style.display = 'flex';
+  document.querySelector('.gallery-li').classList.remove('active');
+  document.querySelector('.saved-memes-li').classList.remove('active');
+  document.querySelector('.about-li').classList.add('active');
 }

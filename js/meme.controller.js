@@ -49,6 +49,7 @@ function renderRect(num) {
   var selectedTxtIdx = gCurrMeme.selectedLineIdx;
   // console.log(selectedTxtIdx);
   var selectedLine = gCurrMeme.lines[selectedTxtIdx];
+
   // console.log(selectedLine);
   drawRect(0, selectedLine.y - selectedLine.size / 2, 450, selectedLine.size);
 }
@@ -129,17 +130,19 @@ function onSelectFont(selectedFont) {
   changeTxtFont(selectedFont);
   renderMeme();
 }
-function onDownload(elLink) {
+
+function openDownloadModal() {
+  document.querySelector('.download-modal').style.left = '80%';
   gIsSaved = true;
   renderMeme();
-
-  setTimeout(function () {
-    download(elLink);
-  }, 20);
+}
+function onDownload(elLink) {
+  document.querySelector('.download-modal').style.left = '120%';
+  download(elLink);
 }
 
 function download(elLink) {
-  var imgContent = gCanvas.toDataURL('img/jpeg');
+  var imgContent = gCanvas.toDataURL('img/jpg');
   console.log(imgContent);
   elLink.href = imgContent;
   gIsSaved = false;
@@ -156,11 +159,15 @@ function onSaveMeme() {
 
   // gIsSaved === false;
 }
-
+/////
+var gSavedImgId = 1;
+//////
 function saveMeme() {
   var imgContent = gCanvas.toDataURL('img/jpeg');
   gCurrMeme.imgUrl = imgContent;
-
+  /////
+  gCurrMeme.savedImgId = gSavedImgId;
+  ///////
   var savedMemes = loadFromStorage('savedMemesDB');
   console.log(savedMemes);
   if (!savedMemes || savedMemes.length === 0)
@@ -170,9 +177,49 @@ function saveMeme() {
     saveToStorage('savedMemesDB', savedMemes);
   }
   gIsSaved = false;
+  //////
+  gSavedImgId++;
+  //////
 }
 
 function onMoveLine(direction) {
   moveLine(direction);
   renderMeme();
+}
+
+function uploadImg() {
+  document.querySelector('.share-container').style.left = '75%';
+  const imgDataUrl = gCanvas.toDataURL();
+
+  // A function to be called if request succeeds
+  function onSuccess(uploadedImgUrl) {
+    const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl);
+    document.querySelector('.share-container').innerHTML = `
+        <a class="btn" href="https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); return false;">
+           Share 
+        </a> </br> <button onclick="closeShareModal()">X</button>  `;
+  }
+  doUploadImg(imgDataUrl, onSuccess);
+}
+
+function doUploadImg(imgDataUrl, onSuccess) {
+  const formData = new FormData();
+  formData.append('img', imgDataUrl);
+
+  fetch('//ca-upload.com/here/upload.php', {
+    method: 'POST',
+    body: formData,
+  })
+    .then((res) => res.text())
+    .then((url) => {
+      console.log('Got back live url:', url);
+      onSuccess(url);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}
+
+function closeShareModal() {
+  document.querySelector('.share-container').style.left = '125%';
 }
