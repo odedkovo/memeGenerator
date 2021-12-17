@@ -10,7 +10,7 @@ getMeme();
 function renderMeme() {
   gCanvas = document.querySelector('#my-canvas');
   gCtx = gCanvas.getContext('2d');
-  gCanvas.addEventListener('mousedown', (event) => eventHanler(event));
+  gCanvas.addEventListener('mousedown', (event) => eventHandler(event));
 
   gCurrMeme = getMeme();
   drawImgFromlocal(`./img/${gCurrMeme.selectedImgId}.jpg`);
@@ -131,7 +131,7 @@ function onSelectFont(selectedFont) {
 }
 
 function openDownloadModal() {
-  document.querySelector('.download-modal').style.left = '80%';
+  document.querySelector('.download-modal').style.left = '70%';
   gIsSaved = true;
   renderMeme();
 }
@@ -223,7 +223,8 @@ function closeShareModal() {
   document.querySelector('.share-container').style.left = '125%';
 }
 
-function eventHanler(ev) {
+function eventHandler(ev) {
+  console.log(ev);
   var x = ev.offsetX;
   var y = ev.offsetY;
   // console.log(x);
