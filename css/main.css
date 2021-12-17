@@ -26,6 +26,10 @@ body {
   font-family: baloo-bold;
   background-color: rgb(253, 251, 251);
   margin: 0 auto;
+  /* overflow-x: hidden; */
+}
+.wraper {
+  position: relative;
   overflow-x: hidden;
 }
 
@@ -536,6 +540,9 @@ canvas {
 }
 
 @media screen and (max-width: 706px) {
+  body {
+    overflow-x: hidden;
+  }
   /* header */
   .main-layout {
     max-width: 600px;

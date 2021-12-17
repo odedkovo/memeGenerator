@@ -9,203 +9,206 @@
   </head>
 
   <body onload="renderGallery('all')">
-
-    <div class="main-screen" onclick="toggleMenu()"></div>
-    <div class="download-modal"> 
+    <div class="wraper">
+      
+      
+      <div class="main-screen" onclick="toggleMenu()"></div>
+      <div class="download-modal"> 
         <a href="#" class="download-link" onclick="onDownload(this)" download="my-img.jpg">Download</a>
-    </div>
-
-    <header>
-      <div class="main-header flex main-layout">
-        <div class="header-logo">
-          <img class="img-logo" src="./logo/LOGO.png" alt="" />
-        </div>
-        <div class="nav-bar flex">
-          <ul class="ul-nav-bar flex">
-            <li class="gallery-li" onclick=" renderGallery('all')"><span>gallery</span></li>
-            <li class = "saved-memes-li" onclick="renderSavedMemes()"><span>saved</span></li>
-            <li class="about-li" onclick="showAbout()"><a href="#me">about</a></li>
-          </ul>
-        </div>
-        
-        <div onclick="toggleMenu()" class="hamburger">
-          <svg fill="white" viewBox="0 0 100 80" width="40" height="40">
-            <rect width="100" height="20"></rect>
-            <rect y="30" width="100" height="20"></rect>
-            <rect y="60" width="100" height="20"></rect>
-          </svg>
-        </div>
       </div>
-    </header>
-
-    <div class="modal flex">
-      <ul>
-        <li onclick=" renderGallery('all')">gallery</li>
-            <li onclick="renderSavedMemes()">saved</li>
-            <li onclick="showAboutModal()">about</li>
-      </ul>
-    </div>
-
-    <section class="hero flex">
-      <div class="main-hero main-layout flex">
-        <div class="hero-input">
-          <input
-          onchange="renderGallery(this.value)"
-          placeholder="Search Categories"
-          list="search-options"
-          id="search-choice"
-        />
-        <datalist id="search-options">
-          <option value="funny"></option>
-          <option value="comics"></option>
-          <option value="dogs"></option>
-          <option value="drinks"></option>
-          <option value="books"></option>
-          <option value="love"></option>
-          <option value="baby"></option>
-          <option value="sleep"></option>
-          <option value="shock"></option>
-        </datalist>
-
-          <img src="./icons/search-icon.png" alt="">
+      
+      <header>
+        <div class="main-header flex main-layout">
+          <div class="header-logo">
+            <img class="img-logo" src="./logo/LOGO.png" alt="" />
+          </div>
+          <div class="nav-bar flex">
+            <ul class="ul-nav-bar flex">
+              <li class="gallery-li" onclick=" renderGallery('all')"><span>gallery</span></li>
+              <li class = "saved-memes-li" onclick="renderSavedMemes()"><span>saved</span></li>
+              <li class="about-li" onclick="showAbout()"><a href="#me">about</a></li>
+            </ul>
+          </div>
+          
+          <div onclick="toggleMenu()" class="hamburger">
+            <svg fill="white" viewBox="0 0 100 80" width="40" height="40">
+              <rect width="100" height="20"></rect>
+              <rect y="30" width="100" height="20"></rect>
+              <rect y="60" width="100" height="20"></rect>
+            </svg>
+          </div>
         </div>
-        <div class="key-words">
-
-          <ul class="flex">
-            <div class="flex">
-              <li class="funny-li" onclick="renderGallery('funny')">funny</li>
-              <li class="comics-li" onclick="renderGallery('comics')">comics</li>
-              <li class="dogs-li" onclick="renderGallery('dogs')">dogs</li>
-              <li class="drinks-li" onclick="renderGallery('drinks')">drinks</li>
-              <li class="books-li" onclick="renderGallery('books')">books</li>
-              <li onclick="loadMoreKeyWords()"><span>more..</span></li>
-            </div>
-          </ul>
-
-          <ul class="flex">
-                <div class="more-key-words flex">
+      </header>
+      
+      <div class="modal flex">
+        <ul>
+          <li onclick=" renderGallery('all')">gallery</li>
+          <li onclick="renderSavedMemes()">saved</li>
+          <li onclick="showAboutModal()">about</li>
+        </ul>
+      </div>
+      
+      <section class="hero flex">
+        <div class="main-hero main-layout flex">
+          <div class="hero-input">
+            <input
+            onchange="renderGallery(this.value)"
+            placeholder="Search Categories"
+            list="search-options"
+            id="search-choice"
+            />
+            <datalist id="search-options">
+              <option value="funny"></option>
+              <option value="comics"></option>
+              <option value="dogs"></option>
+              <option value="drinks"></option>
+              <option value="books"></option>
+              <option value="love"></option>
+              <option value="baby"></option>
+              <option value="sleep"></option>
+              <option value="shock"></option>
+            </datalist>
+            
+            <img src="./icons/search-icon.png" alt="">
+          </div>
+          <div class="key-words">
+            
+            <ul class="flex">
+              <div class="flex">
+                <li class="funny-li" onclick="renderGallery('funny')">funny</li>
+                <li class="comics-li" onclick="renderGallery('comics')">comics</li>
+                <li class="dogs-li" onclick="renderGallery('dogs')">dogs</li>
+                <li class="drinks-li" onclick="renderGallery('drinks')">drinks</li>
+                <li class="books-li" onclick="renderGallery('books')">books</li>
+                <li onclick="loadMoreKeyWords()"><span>more..</span></li>
+              </div>
+            </ul>
+            
+            <ul class="flex">
+              <div class="more-key-words flex">
                 <li class="live-li" onclick="renderGallery('love')">love</li>
                 <li class="baby-li" onclick="renderGallery('baby')">baby</li>
                 <li class="sleep-li" onclick="renderGallery('sleep')">sleep</li>
                 <li class="shock-li" onclick="renderGallery('shock')">shock</li>
               </div>
-              </ul>
+            </ul>
             
+          </div>
         </div>
-      </div>
-    </section>
-<div class="gallery-container">
-  <div class="gallery main-layout"></div>
-  
-</div>
-    <section class="editor flex">
-
-      <div class="canvas-container">
-        <canvas id="my-canvas" height="450" width="450"></canvas>
-      </div>
-<div class="al-meme-buttons">
-
-  <div class="meme-buttons">
-    <input oninput="getInput()" type="text" id="meme-text" /> 
-    <button class="up" onclick="onMoveLine('up')"><img  src="./icons/up.png" alt=""></button>
-    <button class="down" onclick="onMoveLine('down')"><img src="./icons/down.png.jpeg" alt=""></button>
-    
-    
-    <button class="switch-line" onclick="onSwitchLine()"><img src="./icons/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></button>
-    
-    <button class="add-line" onclick="onCreateLine()"><img src="./icons/add.png" alt=""></button>
-    <button class="trash" onclick ="onTrash()"><img src="./icons/trash.png" alt=""></button>
-    <button class="increase-font" onclick="changeFontSize('+')"><img src="./icons/increase font - icon.png" alt=""></button>
-    <button class="decrease-font"onclick="changeFontSize('-')"><img src="./icons/decrease font - icon.png" alt=""></button>
-    <button class="align-left" onclick="onAlign('right')"><img src="./icons/align-to-left.png" alt=""></button>
-  <button class="align-center" onclick="onAlign('center')"><img src="./icons/center-text-alignment.png" alt=""></button>
-  <button class="align-right" onclick="onAlign('left')"><img src="./icons/align-to-right.png" alt=""></button>
- 
-  <select onchange="onSelectFont(this.value)" name="fonts" id="fonts">
-    <option value=" impact">impact</option>
-    <option value=" baloo-bold">balooo</option>
-    <option value="Shalimar-Regular">Shalimar</option>
-   <option value="corintia-regular">corintia</option>
-  </select>
-
-  <button class="text-stroke" ><img src="./icons/text stroke.png" alt="">
-    <input id="stroke-color" type="color" oninput="onStrokeColor()" /></button>
- <button class="painter">
-   <img src="./icons/paint-board-and-brush.png" alt="">
-   <input id="chosen-color" type="color" oninput="getColor()" />
-  </button>
-  <div class="stickers-box">stickers</div>
-</div>
-
-<div class="media-buttons flex">
-  <button onclick="onSaveMeme()" class="save-button">save</button>
-  <button onclick="uploadImg()" class="share-button">share</button>
-  <button onclick="openDownloadModal()" class="download-button">download</button>
-</div>
-<p class="user-msg"></p>
-<div class="share-container"></div>
-
-
-</div>
-    </section>
-
-    <section class="saved-memes gallery"></section>
-
-
-
-
-    <section id="me" class="me flex">
-      <div class="main-me main-layout flex">
+      </section>
+      <div class="gallery-container">
+        <div class="gallery main-layout"></div>
         
-        <div class="contact-me">
-          <img class="oded-img" src="./img/oded.png" alt="" />
+      </div>
+      <section class="editor flex">
+        
+        <div class="canvas-container">
+          <canvas id="my-canvas" height="450" width="450"></canvas>
         </div>
-
-        <div class="about-me">
-          <h2>oded kovo</h2>
-          <p>
-            my name is oded kovo and this is my second sprint! everything you
-            see has built by me.</br> ive started to learn full stack development 6
-            weeks ago and im proud!
-          </p>
+        <div class="al-meme-buttons">
           
-          <ul class="flex">
-            <li>
-                <a  class="fa facebook" href="https://www.facebook.com/oded.kobo"></a>
-            </li>
-            <li>
-                <a class="fa instegram" href="https://www.instagram.com/odedkovo/"></a>
-            </li>
-            <li>
-                <a class="fa github" href="https://github.com/odedkovo"></a>
-            </li>
-          </ul>
+          <div class="meme-buttons">
+            <input oninput="getInput()" type="text" id="meme-text" /> 
+            <button class="up" onclick="onMoveLine('up')"><img  src="./icons/up.png" alt=""></button>
+            <button class="down" onclick="onMoveLine('down')"><img src="./icons/down.png.jpeg" alt=""></button>
+            
+            
+            <button class="switch-line" onclick="onSwitchLine()"><img src="./icons/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></button>
+            
+            <button class="add-line" onclick="onCreateLine()"><img src="./icons/add.png" alt=""></button>
+            <button class="trash" onclick ="onTrash()"><img src="./icons/trash.png" alt=""></button>
+            <button class="increase-font" onclick="changeFontSize('+')"><img src="./icons/increase font - icon.png" alt=""></button>
+            <button class="decrease-font"onclick="changeFontSize('-')"><img src="./icons/decrease font - icon.png" alt=""></button>
+            <button class="align-left" onclick="onAlign('right')"><img src="./icons/align-to-left.png" alt=""></button>
+            <button class="align-center" onclick="onAlign('center')"><img src="./icons/center-text-alignment.png" alt=""></button>
+            <button class="align-right" onclick="onAlign('left')"><img src="./icons/align-to-right.png" alt=""></button>
+            
+            <select onchange="onSelectFont(this.value)" name="fonts" id="fonts">
+              <option value=" impact">impact</option>
+              <option value=" baloo-bold">balooo</option>
+              <option value="Shalimar-Regular">Shalimar</option>
+              <option value="corintia-regular">corintia</option>
+            </select>
+            
+            <button class="text-stroke" ><img src="./icons/text stroke.png" alt="">
+              <input id="stroke-color" type="color" oninput="onStrokeColor()" /></button>
+              <button class="painter">
+                <img src="./icons/paint-board-and-brush.png" alt="">
+                <input id="chosen-color" type="color" oninput="getColor()" />
+              </button>
+              <div class="stickers-box">stickers</div>
+            </div>
+            
+            <div class="media-buttons flex">
+              <button onclick="onSaveMeme()" class="save-button">save</button>
+              <button onclick="uploadImg()" class="share-button">share</button>
+              <button onclick="openDownloadModal()" class="download-button">download</button>
+            </div>
+            <p class="user-msg"></p>
+            <div class="share-container"></div>
+            
 
+          </div>
+        </section>
+        
+        <section class="saved-memes gallery"></section>
+        
+        
+        
+        
+        <section id="me" class="me flex">
+          <div class="main-me main-layout flex">
+            
+            <div class="contact-me">
+              <img class="oded-img" src="./img/oded.png" alt="" />
+            </div>
+            
+            <div class="about-me">
+              <h2>oded kovo</h2>
+              <p>
+                my name is oded kovo and this is my second sprint! everything you
+                see has built by me.</br> ive started to learn full stack development 6
+                weeks ago and im proud!
+              </p>
+              
+              <ul class="flex">
+                <li>
+                  <a  class="fa facebook" href="https://www.facebook.com/oded.kobo"></a>
+                </li>
+                <li>
+                  <a class="fa instegram" href="https://www.instagram.com/odedkovo/"></a>
+                </li>
+                <li>
+                  <a class="fa github" href="https://github.com/odedkovo"></a>
+                </li>
+          </ul>
+          
         </div>
       </div>
     </section>
-
+    
     <footer class="footer flex">
       <div class="main-footer">
         <h3>memegen</h3>
         <div class="coffeeright"> "Ⓒ coffee rights to oded kovo" </div>
       </div>
     </footer>
-
-
+    
+    
     <script src="./js/storage.uils.js"></script>
     <script src="./js/main.js"></script>
     <script src="./js/meme.service.js"></script>
     <script src="./js/meme.controller.js"></script>
     <script src="./js/gallery.controller.js"></script>
     <script src="./js/saved.memes.controller.js"></script>
+    
+    
+    <script>
+      function toggleMenu(){
+        document.body.classList.toggle('open')
+      }
+      </script>
 
-
-<script>
-  function toggleMenu(){
-    document.body.classList.toggle('open')
-  }
-  </script>
-
-  </body>
+</div>
+</body>
 </html>

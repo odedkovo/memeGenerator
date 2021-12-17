@@ -44,7 +44,6 @@ function renderText() {
 }
 
 function renderRect(num) {
-  console.log(gIsSaved);
   if (gIsSaved === true) return;
   var selectedTxtIdx = gCurrMeme.selectedLineIdx;
   // console.log(selectedTxtIdx);
