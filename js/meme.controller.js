@@ -184,6 +184,7 @@ function closeShareModal() {
   document.querySelector('.share-container').style.left = '125%';
 }
 function eventHandler(ev) {
+  ev.preventDefault();
   var y = ev.changedPointers[0].offsetY;
   var currLineIdxClicked = gCurrMeme.lines.findIndex(
     (line) => line.y < y + line.size && line.y > y - line.size
