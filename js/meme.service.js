@@ -3,17 +3,13 @@ var gId = 1;
 var gCountImgId = 1;
 var gMemes = [];
 createMemes();
-// console.log(gMemes);
 var gMeme = {};
-
 function getCurrMemeId(imgId) {
   setCurrMeme(imgId);
 }
 function setCurrMeme(id) {
   gMeme = gMemes[id];
-  // console.log(gMeme);
 }
-
 function createMemes() {
   for (var i = 1; i < 19; i++) {
     gMemes.push(createMemeForArray());
@@ -40,7 +36,6 @@ function createMemeForArray() {
       },
     ],
   };
-
   gId++;
   gCountImgId++;
   return meme;
@@ -48,25 +43,20 @@ function createMemeForArray() {
 function getMeme() {
   return gMeme;
 }
-
 function setLineTxt(text) {
   gMeme.lines[gMeme.selectedLineIdx].txt = text;
 }
-
 function setImg(imgId) {
   gMeme.selectedImgId = imgId;
 }
-
 function changeColor(color) {
   gMeme.lines[gMeme.selectedLineIdx].color = color;
   console.log(gMeme);
 }
-
 function updateFont(val) {
   if (val === '+') gMeme.lines[gMeme.selectedLineIdx].size += 10;
   else if (val === '-') gMeme.lines[gMeme.selectedLineIdx].size -= 10;
 }
-
 function createLine() {
   gMeme.lines.push({
     txt: 'new text',
@@ -79,21 +69,17 @@ function createLine() {
   });
   gMeme.selectedLineIdx = gMeme.lines.length - 1;
 }
-
 function switchLine() {
   if (gMeme.selectedLineIdx === gMeme.lines.length - 1)
     gMeme.selectedLineIdx = 0;
   else gMeme.selectedLineIdx++;
 }
-
 function changeAlign(side) {
   gMeme.lines[gMeme.selectedLineIdx].align = side;
 }
-
 function changeStrokeColor(strokeColor) {
   gMeme.lines[gMeme.selectedLineIdx].strokeColor = strokeColor;
 }
-
 function deleteSelectedLine() {
   gMeme.lines.splice(gMeme.selectedLineIdx, 1);
   gMeme.selectedLineIdx--;
@@ -102,16 +88,13 @@ function deleteSelectedLine() {
 function changeTxtFont(selectedFont) {
   gMeme.lines[gMeme.selectedLineIdx].font = selectedFont;
 }
-
 function moveLine(direction) {
   if (direction === 'up') gMeme.lines[gMeme.selectedLineIdx].y -= 20;
   else if (direction === 'down') gMeme.lines[gMeme.selectedLineIdx].y += 20;
 }
-
 function setkeyWords() {
   var all = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
   all.forEach((num) => gMemes[num].keyWords.push('all'));
-
   var happy = [1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 15];
   happy.forEach((num) => gMemes[num].keyWords.push('happy'));
   var comics = [17];
@@ -130,11 +113,9 @@ function setkeyWords() {
   sleep.forEach((idx) => gMemes[idx].keyWords.push('sleep'));
   var shock = [6, 15];
   shock.forEach((idx) => gMemes[idx].keyWords.push('shock'));
-
   var funny = [0, 4, 5, 6, 7, 8, 9, 10, 15];
   funny.forEach((idx) => gMemes[idx].keyWords.push('funny'));
 }
-
 function sortBy(keyWord) {
   var filteredMemes = gMemes.filter((meme) => meme.keyWords.includes(keyWord));
   return filteredMemes;
@@ -142,9 +123,6 @@ function sortBy(keyWord) {
 function changeSelectedLine(idx) {
   gMeme.selectedLineIdx = idx;
 }
-
 function changeCurrMemeY(y) {
-  // console.log(y);
   gMeme.lines[gMeme.selectedLineIdx].y = y;
-  // console.log(gMeme);
 }

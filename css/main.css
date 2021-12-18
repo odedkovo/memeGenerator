@@ -1,13 +1,11 @@
 * {
   box-sizing: border-box;
 }
-
 /* FONTS */
 @font-face {
   font-family: corintia-regular;
   src: url(../fonts/Corinthia/Corinthia-Regular.ttf);
 }
-
 @font-face {
   font-family: Shalimar-Regular;
   src: url(../fonts/Shalimar/Shalimar-Regular.ttf);
@@ -20,7 +18,6 @@
   font-family: fa;
   src: url(../fonts/fa-brands-400.ttf);
 }
-
 body {
   font-size: 1rem;
   font-family: baloo-bold;
@@ -32,7 +29,6 @@ body {
   position: relative;
   overflow-x: hidden;
 }
-
 /* HELPERS */
 .flex {
   display: flex;
@@ -41,7 +37,6 @@ body {
   width: 90vw;
   margin: auto;
 }
-
 ul {
   list-style: none;
   margin: 0;
@@ -53,17 +48,14 @@ input {
 select {
   text-align: center;
 }
-
 .active {
   border-bottom: black solid 3px;
   color: black;
 }
-
 a {
   text-decoration: none;
   color: white;
 }
-
 /* HEADEER */
 header {
   height: 15vh;
@@ -86,7 +78,6 @@ header {
   height: 40px;
   transform: translate(0 -50%);
 }
-
 /* nav */
 .nav-bar {
   color: beige;
@@ -98,7 +89,6 @@ header {
   width: 100%;
   justify-content: space-between;
 }
-
 .ul-nav-bar li {
   display: flex;
   justify-content: center;
@@ -108,21 +98,16 @@ header {
   width: 33.3%;
   /* border-right: rgb(11, 12, 11) solid 2px; */
 }
-.ul-nav-bar li:first-child {
-}
-
 .ul-nav-bar span {
   text-align: center;
   width: 100%;
   border-right: rgb(11, 12, 11) solid 2px;
 }
-
 .ul-nav-bar li:hover {
   cursor: pointer;
   color: rgb(22, 22, 21);
   box-shadow: inset 0px -6px 0px;
 }
-
 /* modal */
 .modal {
   height: 50%;
@@ -134,7 +119,6 @@ header {
   justify-content: center;
   transition: 0.3s;
 }
-
 .modal ul {
   display: flex;
   flex-direction: column;
@@ -159,7 +143,6 @@ header {
   background-color: rgb(204, 135, 135);
   border: black solid 3px;
 }
-
 .main-screen {
   position: fixed;
   width: 100vw;
@@ -170,13 +153,11 @@ header {
   pointer-events: none;
   transition: opacity 0.6s;
 }
-
 /* hero */
 .hero {
   height: 12vh;
   background-color: rgb(255, 255, 255);
 }
-
 .main-hero {
   align-items: center;
   justify-content: space-between;
@@ -202,33 +183,26 @@ header {
   width: 100%;
   justify-content: space-around;
 }
-
 .more-key-words {
   display: none;
 }
-
 .key-words li:hover {
   cursor: pointer;
   color: rgb(31, 30, 30);
   font-size: 1.2rem;
 }
-
 /* Gallery */
 .gallery-container {
   background-color: rgb(221, 220, 220);
 }
 .gallery {
   padding: 10px;
-
   display: grid;
   justify-content: center;
   gap: 6px;
   grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
   grid-template-columns: repeat(auto-fill, 220px);
-  /* grid-template-rows: repeat(3, 1fr);
-  grid-template-columns: repeat(6, 1fr); */
 }
-
 .img {
   border-radius: 15px;
   width: 220px;
@@ -241,13 +215,11 @@ header {
 .gallery img:hover {
   cursor: pointer;
 }
-
 /* EDITOR */
 #my-canvas {
   margin-bottom: 5px;
   border-radius: 15px;
 }
-
 .editor {
   padding: 10px;
   background-color: #e2e2e2;
@@ -261,7 +233,6 @@ header {
   display: flex;
   flex-direction: column;
 }
-
 .meme-buttons {
   display: grid;
   grid-template-rows: 7;
@@ -271,7 +242,6 @@ header {
   height: 80%;
   justify-content: center;
 }
-
 .meme-buttons button {
   height: 50px;
   width: 50px;
@@ -296,7 +266,6 @@ button input {
   transform: translate(-50%, -50%);
   position: absolute;
 }
-/* grid ;row start/col start/row end /col end */
 #meme-text {
   height: 50px;
   border-radius: 15px;
@@ -319,7 +288,6 @@ button input {
   grid-row: 3;
   grid-column: 1;
 }
-
 .decrease-font {
   grid-row: 3;
   grid-column: 2;
@@ -328,12 +296,10 @@ button input {
   grid-row: 3;
   grid-column: 3;
 }
-
 .align-center {
   grid-row: 3;
   grid-column: 4;
 }
-
 .align-right {
   grid-row: 3;
   grid-column: 5;
@@ -352,7 +318,6 @@ button input {
   grid-row: 4;
   grid-column: 5;
 }
-
 #meme-text {
   grid-area: 1/1/1/6;
 }
@@ -367,7 +332,6 @@ button input {
   border-radius: 15px;
   margin-bottom: 15px;
 }
-
 .media-buttons {
   width: 100%;
   justify-content: space-around;
@@ -382,12 +346,10 @@ button input {
   background-color: rgb(255, 149, 11);
   color: #ffffff;
 }
-
 .media-buttons button:hover {
   border: rgb(11, 12, 11) solid 1px;
   background-color: rgb(238, 159, 56);
 }
-
 .download-modal {
   text-align: center;
   height: 100px;
@@ -407,7 +369,6 @@ button input {
   width: 100%;
   transform: translate(-50%, -25%);
 }
-
 .share-container {
   border-radius: 10px;
   text-align: center;
@@ -423,31 +384,24 @@ button input {
   border-radius: 10px;
   border: none;
 }
-
 .share-container a {
   color: black;
 }
-
 canvas {
   display: block;
   margin: 0 auto;
-  /* outline: 1px solid black; */
   background-color: rgb(255, 255, 255);
 }
-
 .saved-memes {
   padding: 5px;
   background-color: rgb(233, 233, 233);
 }
-
 /* me */
-
 .me {
   height: 40vh;
   width: 100%;
   background-color: rgb(240, 240, 240);
 }
-
 .main-me {
   justify-content: flex-start;
 }
@@ -462,7 +416,6 @@ canvas {
   width: 200px;
   border-radius: 50%;
 }
-
 .about-me {
   display: flex;
   flex-direction: column;
@@ -473,19 +426,16 @@ canvas {
   list-style: none;
   padding: 0%;
 }
-
 .about-me li a {
   margin-right: 20px;
   margin-left: 20px;
 }
-
 .about-me button {
   border: none;
 }
 .about-me button:hover {
   cursor: pointer;
 }
-
 .fa {
   font-family: fa;
   font-size: 1.2rem;
@@ -505,23 +455,19 @@ canvas {
 .facebook:hover {
   color: rgb(64, 64, 161);
 }
-
 .instegram::before {
   content: '\f16d';
 }
 .instegram:hover {
   color: rgb(230, 36, 75);
 }
-
 .github::before {
   content: '\f09b';
 }
 .github:hover {
   color: rgb(48, 46, 46);
 }
-
 /* footer */
-
 .footer {
   text-align: center;
   width: 100%;
@@ -538,7 +484,6 @@ canvas {
 .coffeeright {
   margin: 5px;
 }
-
 @media screen and (max-width: 706px) {
   body {
     overflow-x: hidden;
@@ -553,7 +498,6 @@ canvas {
   .hamburger {
     display: block;
   }
-
   .open .main-screen {
     opacity: 1;
     pointer-events: auto;
@@ -561,7 +505,6 @@ canvas {
   .open .modal {
     top: 0%;
   }
-
   /* hero */
   .main-hero {
     display: flex;
@@ -574,7 +517,6 @@ canvas {
     margin: 0, auto;
     width: 80%;
   }
-
   .gallery {
     grid-template-rows: repeat(auto-fill, minmax(150px, 1fr));
     grid-template-columns: repeat(auto-fill, 150px);
@@ -586,7 +528,6 @@ canvas {
   .img img {
     max-width: 150px;
   }
-
   /* me */
   .me {
     text-align: center;
@@ -610,7 +551,6 @@ canvas {
     margin: auto;
     justify-content: center;
   }
-
   /* editor */
   .editor {
     display: flex;
