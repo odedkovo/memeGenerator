@@ -10,7 +10,10 @@ getMeme();
 function renderMeme() {
   gCanvas = document.querySelector('#my-canvas');
   gCtx = gCanvas.getContext('2d');
-  gCanvas.addEventListener('mousedown', (event) => eventHandler(event));
+  // gCanvas.addEventListener('mousedown', (event) => eventHandler(event));
+
+  const hammertime = new Hammer(gCanvas);
+  hammertime.on('tap pan', (ev) => eventHandler(ev));
 
   gCurrMeme = getMeme();
   drawImgFromlocal(`./img/${gCurrMeme.selectedImgId}.jpg`);
@@ -224,18 +227,14 @@ function closeShareModal() {
 }
 
 function eventHandler(ev) {
-  console.log(ev);
-  var x = ev.offsetX;
-  var y = ev.offsetY;
-  // console.log(x);
-  // console.log(y);
-  // console.log(gCurrMeme);
+  var y = ev.changedPointers[0].offsetY;
   var currLineIdxClicked = gCurrMeme.lines.findIndex(
     (line) => line.y < y + line.size && line.y > y - line.size
   );
   if (currLineIdxClicked === -1) return;
-
-  console.log(currLineIdxClicked);
-  changeSelectedLine(currLineIdxClicked);
-  renderMeme();
+  else {
+    changeSelectedLine(currLineIdxClicked);
+    changeCurrMemeY(y);
+    renderMeme();
+  }
 }

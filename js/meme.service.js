@@ -142,3 +142,9 @@ function sortBy(keyWord) {
 function changeSelectedLine(idx) {
   gMeme.selectedLineIdx = idx;
 }
+
+function changeCurrMemeY(y) {
+  // console.log(y);
+  gMeme.lines[gMeme.selectedLineIdx].y = y;
+  // console.log(gMeme);
+}
