@@ -34,7 +34,7 @@ body {
   display: flex;
 }
 .main-layout {
-  width: 90vw;
+  width: 95vw;
   margin: auto;
 }
 ul {
@@ -62,6 +62,7 @@ header {
   background-color: rgb(255, 149, 11);
 }
 .main-header {
+  font-size: 1.3rem;
   justify-content: space-between;
   height: 100%;
   align-items: center;
@@ -106,13 +107,13 @@ header {
 .ul-nav-bar li:hover {
   cursor: pointer;
   color: rgb(22, 22, 21);
-  box-shadow: inset 0px -6px 0px;
+  box-shadow: inset 0px -3px 0px;
 }
 /* modal */
 .modal {
   height: 50%;
   width: 30%;
-  background-color: rgb(129, 18, 18);
+  background-color: rgb(255, 149, 11);
   position: fixed;
   top: -100%;
   left: 70%;
@@ -177,8 +178,10 @@ header {
   height: 15px;
 }
 .key-words ul {
+  gap: 5px;
   justify-content: space-between;
 }
+
 .hero ul div {
   width: 100%;
   justify-content: space-around;
@@ -186,10 +189,10 @@ header {
 .more-key-words {
   display: none;
 }
+
 .key-words li:hover {
   cursor: pointer;
-  color: rgb(31, 30, 30);
-  font-size: 1.2rem;
+  color: rgb(114, 111, 111);
 }
 /* Gallery */
 .gallery-container {
@@ -207,7 +210,14 @@ header {
   border-radius: 15px;
   width: 220px;
   height: 220px;
+  transition: 0.2s;
 }
+.img:hover {
+  opacity: 0.6;
+  -webkit-box-shadow: 5px 6px 21px 0px rgba(0, 0, 0, 0.93);
+  box-shadow: 5px 6px 21px 0px rgba(0, 0, 0, 0.93);
+}
+
 .img img {
   border-radius: 15px;
   max-width: 220px;
@@ -516,6 +526,11 @@ canvas {
   .key-words {
     margin: 0, auto;
     width: 80%;
+  }
+
+  .key-words ul li {
+    margin-left: 4px;
+    margin-right: 4px;
   }
   .gallery {
     grid-template-rows: repeat(auto-fill, minmax(150px, 1fr));

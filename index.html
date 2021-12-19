@@ -7,7 +7,7 @@
     <title>meme generator</title>
     <link rel="stylesheet" href="./css/main.css" />
   </head>
-  <body  onload="renderGallery('all')">
+  <body  onload="init()">
     <div class="wraper">
       <div class="main-screen" onclick="toggleMenu()"></div>
       <div class="download-modal"> 
@@ -117,7 +117,9 @@
                 <img src="./icons/paint-board-and-brush.png" alt="">
                 <input id="chosen-color" type="color" oninput="getColor()" />
               </button>
-              <div class="stickers-box">stickers</div>
+              <div class="stickers-box"><span onclick="onAddSticker('😜')">😜</span>
+                <span onclick="onAddSticker('💣')">💣</span>
+                <span onclick="onAddSticker('❤')">❤</span></div>
             </div>            
             <div class="media-buttons flex">
               <button onclick="onSaveMeme()" class="save-button">save</button>
@@ -135,9 +137,9 @@
               <img class="oded-img" src="./img/oded.png" alt="" />
             </div>
             <div class="about-me">
-              <h2>oded kovo</h2>
+              <h2>Oded Kovo</h2>
               <p>
-                my name is oded kovo and this is my second sprint! everything you
+                my name is Oded kovo and this is my second sprint! everything you
                 see has built by me.</br> ive started to learn full stack development 6
                 weeks ago and im proud!
               </p>             
@@ -158,7 +160,7 @@
     <footer class="footer flex">
       <div class="main-footer">
         <h3>memegen</h3>
-        <div class="coffeeright"> "Ⓒ coffee rights to oded kovo" </div>
+        <div class="coffeeright">coffee rights to oded kovo Ⓒ </div>
       </div>
     </footer>    
     <script src="./lb/hammer.js"></script>

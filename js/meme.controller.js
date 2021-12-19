@@ -1,18 +1,15 @@
 'use strict';
+var gIsClicked = false;
 var gCanvas;
 var gCtx;
 var gCurrMeme;
 var handle;
 var gIsSaved;
 var gIsDownload;
+var gSavedId = 1000;
 getMeme();
 
 function renderMeme() {
-  gCanvas = document.querySelector('#my-canvas');
-  gCtx = gCanvas.getContext('2d');
-  // gCanvas.addEventListener('mousedown', (event) => eventHandler(event));
-  const hammertime = new Hammer(gCanvas);
-  hammertime.on('tap pan', (ev) => eventHandler(ev));
   gCurrMeme = getMeme();
   drawImgFromlocal(`./img/${gCurrMeme.selectedImgId}.jpg`);
   setTimeout(function () {
@@ -20,6 +17,7 @@ function renderMeme() {
   }, 1);
   updateInputElemnt();
 }
+
 function drawImgFromlocal(imgSrc) {
   var img = new Image();
   img.src = imgSrc;
@@ -27,6 +25,7 @@ function drawImgFromlocal(imgSrc) {
     gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height); //img,x,y,xend,yend
   };
 }
+
 function renderText() {
   gCurrMeme.lines.forEach(function (line) {
     drawText(
@@ -41,12 +40,14 @@ function renderText() {
   });
   renderRect(gCurrMeme.selectedLineIdx);
 }
+
 function renderRect(num) {
   if (gIsSaved === true) return;
   var selectedTxtIdx = gCurrMeme.selectedLineIdx;
   var selectedLine = gCurrMeme.lines[selectedTxtIdx];
   drawRect(0, selectedLine.y - selectedLine.size / 2, 450, selectedLine.size);
 }
+
 function drawText(txt, align, color, strokeColor, size, y, font) {
   gCtx.textBaseline = 'middle';
   gCtx.textAlign = align;
@@ -90,6 +91,7 @@ function drawRect(xStart, yStart, width, height) {
 function updateInputElemnt() {
   var txtInput = document.querySelector('#meme-text');
   var selectedLineTxt = gCurrMeme.lines[gCurrMeme.selectedLineIdx].txt;
+
   txtInput.value = selectedLineTxt;
 }
 function onAlign(side) {
@@ -135,10 +137,20 @@ function onSaveMeme() {
     saveMeme();
   }, 1);
 }
+
 function saveMeme() {
+  var lastId;
   var imgContent = gCanvas.toDataURL('img/jpeg');
   gCurrMeme.imgUrl = imgContent;
   var savedMemes = loadFromStorage('savedMemesDB');
+
+  if (!savedMemes || savedMemes.length === 0) lastId = 1000;
+  else {
+    console.log(savedMemes);
+    lastId = savedMemes[savedMemes.length - 1].id;
+  }
+
+  gCurrMeme.id = lastId + 1;
   console.log(savedMemes);
   if (!savedMemes || savedMemes.length === 0)
     saveToStorage('savedMemesDB', [gCurrMeme]);
@@ -183,16 +195,39 @@ function doUploadImg(imgDataUrl, onSuccess) {
 function closeShareModal() {
   document.querySelector('.share-container').style.left = '125%';
 }
-function eventHandler(ev) {
-  ev.preventDefault();
-  var y = ev.changedPointers[0].offsetY;
+function mouseUp(ev) {
+  gIsClicked = false;
+}
+function mouseDown(ev) {
+  gIsClicked = true;
+  var y = ev.offsetY;
+  var x = ev.offsetX;
+  var lineClickedIdx = getCurrLineClicked(ev);
+  changeSelectedLine(lineClickedIdx);
+  // changeCurrMemeY(y);
+  renderMeme();
+}
+
+function mouseMove(ev) {
+  if (!gIsClicked) return;
+  var y = ev.offsetY;
+  var lineClickedIdx = getCurrLineClicked(ev);
+  if (lineClickedIdx === -1) return;
+  changeSelectedLine(lineClickedIdx);
+  changeCurrMemeY(y);
+  renderMeme();
+}
+
+function getCurrLineClicked(ev) {
+  var y = ev.offsetY;
   var currLineIdxClicked = gCurrMeme.lines.findIndex(
     (line) => line.y < y + line.size && line.y > y - line.size
   );
-  if (currLineIdxClicked === -1) return;
-  else {
-    changeSelectedLine(currLineIdxClicked);
-    changeCurrMemeY(y);
-    renderMeme();
-  }
+  if (currLineIdxClicked === -1) return -1;
+  else return currLineIdxClicked;
+}
+
+function onAddSticker(sticker) {
+  addSticker(sticker);
+  renderMeme();
 }
